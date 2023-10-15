@@ -18,7 +18,7 @@
         android:id="@+id/containerTopo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/background_view_top"
+        android:background="@drawable/background_view_top_login"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
