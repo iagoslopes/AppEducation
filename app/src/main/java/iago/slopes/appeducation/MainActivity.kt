@@ -8,11 +8,19 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthEmailException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import iago.slopes.appeducation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         window.statusBarColor = Color.parseColor("#FFFFFF")
 
-        binding.btEntrar.setOnClickListener{
+        binding.txtTelaCadastro.setOnClickListener {
+            navegarTelaCadastro()
+        }
+        binding.btEntrar.setOnClickListener{view ->
 
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
@@ -33,35 +44,49 @@ class MainActivity : AppCompatActivity() {
                 senha.isEmpty() -> {
                     binding.editSenha.error = "Preencha a Senha!"
                 }
-                !email.contains("@gmail.com") -> {
-                    val snackbar = Snackbar.make(it, "E-mail inválido!",Snackbar.LENGTH_SHORT)
-                    snackbar.show()
-                }
-                senha.length <= 5 -> {
-                    val snackbar = Snackbar.make(it, "A senha precisa ter pelo menos 6 caracteres!",Snackbar.LENGTH_SHORT)
-                    snackbar.show()
-                }
                 else -> {
-                    login(it)
+                    login(view)
                 }
             }
         }
-        binding.txtTelaCadastro.setOnClickListener {
-            navegarTelaCadastro()
-        }
     }
+
     private fun login(view: View){
+        val email = binding.editEmail.text.toString()
+        val senha = binding.editSenha.text.toString()
+
         val progressBar = binding.progressBar
         progressBar.visibility = View.VISIBLE
 
         binding.btEntrar.isEnabled = false
         binding.btEntrar.setTextColor(Color.parseColor("#FFFFFF"))
 
-       Handler(Looper.getMainLooper()).postDelayed({
-           navegarTelaPrincipal()
-           val snackbar = Snackbar.make(view, "Login efetuado com sucesso!",Snackbar.LENGTH_SHORT)
-           snackbar.show()
-       },3000)
+        auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener { login ->
+            if (login.isSuccessful){
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val snackbar = Snackbar.make(view, "Login efetuado com sucesso!",Snackbar.LENGTH_SHORT)
+                    snackbar.setBackgroundTint(Color.BLUE)
+                    snackbar.show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        navegarTelaPrincipal()
+                    },2000)
+                },1000)
+            }
+        }.addOnFailureListener {exception ->
+
+            val mensagemErro = when(exception){
+                is FirebaseAuthInvalidCredentialsException -> "Digite um e-mail válido!"
+                is FirebaseAuthInvalidUserException -> "Essa conta não existe!"
+                is FirebaseNetworkException -> "Sem conexão com a internet!"
+                else -> "Erro ao entrar com o usuário ou senha!"
+            }
+            val snackbar = Snackbar.make(view, mensagemErro, Snackbar.LENGTH_SHORT)
+            snackbar.setBackgroundTint(Color.RED)
+            snackbar.show()
+            progressBar.visibility = View.INVISIBLE
+            binding.btEntrar.isEnabled = true
+            binding.btEntrar.setTextColor(Color.parseColor("#FF000000"))
+        }
     }
 
     private  fun navegarTelaPrincipal(){

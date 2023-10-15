@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "196759893596",
+    "project_id": "appeducation-agro",
+    "storage_bucket": "appeducation-agro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196759893596:android:1ff5361f3bf23c5bdb9899",
+        "android_client_info": {
+          "package_name": "iago.slopes.appeducation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAe4JIJDq_kOgs7KG9ny98VZ_FUTwnibs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

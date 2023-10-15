@@ -8,12 +8,18 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.FirebaseNetworkException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import iago.slopes.appeducation.databinding.ActivityFormCadastroBinding
 import iago.slopes.appeducation.databinding.ActivityMainBinding
 
 class FormCadastro : AppCompatActivity() {
 
     private lateinit var binding: ActivityFormCadastroBinding
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +31,7 @@ class FormCadastro : AppCompatActivity() {
         binding.txtTelaLogin.setOnClickListener {
             navegarTelaLogin()
         }
-        binding.btCadastrar.setOnClickListener{
-
+        binding.btCadastrar.setOnClickListener{ view ->
             val email = binding.editEmail.text.toString()
             val senha = binding.editSenha.text.toString()
 
@@ -37,39 +42,56 @@ class FormCadastro : AppCompatActivity() {
                 senha.isEmpty() -> {
                     binding.editSenha.error = "Preencha a Senha!"
                 }
-                !email.contains("@gmail.com") -> {
-                    val snackbar = Snackbar.make(it, "E-mail inválido!", Snackbar.LENGTH_SHORT)
-                    snackbar.show()
-                }
-                senha.length <= 5 -> {
-                    val snackbar = Snackbar.make(it, "A senha precisa ter pelo menos 6 caracteres!",
-                        Snackbar.LENGTH_SHORT)
-                    snackbar.show()
-                }
                 else -> {
-                    cadastrar(it)
+                    cadastrar(view)
                 }
             }
         }
-
-    }
-    private fun navegarTelaLogin(){
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 
     private fun cadastrar(view: View){
+        val email = binding.editEmail.text.toString()
+        val senha = binding.editSenha.text.toString()
+
         val progressBar = binding.progressBar
         progressBar.visibility = View.VISIBLE
 
         binding.btCadastrar.isEnabled = false
         binding.btCadastrar.setTextColor(Color.parseColor("#FFFFFF"))
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            navegarTelaLogin()
-            val snackbar = Snackbar.make(view, "Login efetuado com sucesso!",Snackbar.LENGTH_SHORT)
+        auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener { cadastro ->
+            if (cadastro.isSuccessful){
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val snackbar = Snackbar.make(view, "Cadastro efetuado com sucesso!",Snackbar.LENGTH_SHORT)
+                    snackbar.setBackgroundTint(Color.BLUE)
+                    snackbar.show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        navegarTelaLogin()
+                    },2000)
+                },1000)
+
+            }
+        }.addOnFailureListener {exception ->
+
+            val mensagemErro = when(exception){
+                is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
+                is FirebaseAuthInvalidCredentialsException -> "Digite um e-mail válido!"
+                is FirebaseAuthUserCollisionException -> "Essa conta já foi cadastrada!"
+                is FirebaseNetworkException -> "Sem conexão com a internet!"
+                else -> "Erro ao cadastrar usuário!"
+            }
+            val snackbar = Snackbar.make(view, mensagemErro, Snackbar.LENGTH_SHORT)
+            snackbar.setBackgroundTint(Color.RED)
             snackbar.show()
-        },3000)
+            progressBar.visibility = View.INVISIBLE
+            binding.btCadastrar.isEnabled = true
+            binding.btCadastrar.setTextColor(Color.parseColor("#FF000000"))
+        }
+    }
+
+    private fun navegarTelaLogin(){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

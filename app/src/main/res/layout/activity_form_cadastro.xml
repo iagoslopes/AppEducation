@@ -25,49 +25,20 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/img_logo"
             app:layout_constraintTop_toTopOf="@id/containerTopo"
             app:layout_constraintStart_toStartOf="@id/containerTopo"
             app:layout_constraintEnd_toEndOf="@id/containerTopo"
             app:layout_constraintBottom_toBottomOf="@id/containerTopo" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtInputLayoutNome"
+            android:id="@+id/txtInputLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/containerTopo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:boxStrokeColor="@color/dark_cyan_green"
-            app:hintAnimationEnabled="true"
-            app:hintTextColor="@color/black"
-            app:errorTextColor="@color/red"
-            app:errorEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/hint_nome"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textSize="18sp"
-                android:padding="15dp"
-                android:background="@drawable/background_edittext" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtInputLayoutEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/txtInputLayoutNome"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             app:boxStrokeColor="@color/dark_cyan_green"
@@ -126,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/txt_button_cadastrar"
+            android:textSize="20sp"
             android:textAllCaps="false"
             android:padding="15dp"
             android:background="@drawable/background_button_selector"
@@ -171,7 +143,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="30dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
