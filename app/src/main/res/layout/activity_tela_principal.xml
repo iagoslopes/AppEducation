@@ -1,19 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/dark_cyan_green"
     tools:context=".TelaPrincipal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lista de Plantas"
-        android:textSize="30sp"
-        android:textColor="@color/dark_cyan_green"
-        android:textStyle="bold" />
+    <View
+        android:id="@+id/containerTopo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/background_view_top_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/img_logo"
+        app:layout_constraintTop_toTopOf="@id/containerTopo"
+        app:layout_constraintStart_toStartOf="@id/containerTopo"
+        app:layout_constraintEnd_toEndOf="@id/containerTopo"
+        app:layout_constraintBottom_toBottomOf="@id/containerTopo"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btPlantas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_button_plantas"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:padding="15dp"
+        android:background="@drawable/background_button_selector"
+        android:enabled="true"
+        app:layout_constraintTop_toBottomOf="@id/imgLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btTerrenos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_button_terrenos"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:padding="15dp"
+        android:background="@drawable/background_button_selector"
+        android:enabled="true"
+        app:layout_constraintTop_toBottomOf="@id/btPlantas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btPragas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_button_pragas"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:padding="15dp"
+        android:background="@drawable/background_button_selector"
+        android:enabled="true"
+        app:layout_constraintTop_toBottomOf="@id/btTerrenos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

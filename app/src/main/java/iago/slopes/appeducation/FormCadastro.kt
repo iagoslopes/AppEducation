@@ -57,18 +57,37 @@ class FormCadastro : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
 
         binding.btCadastrar.isEnabled = false
+        binding.txtTelaLogin.isEnabled = false
         binding.btCadastrar.setTextColor(Color.parseColor("#FFFFFF"))
 
         auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener { cadastro ->
             if (cadastro.isSuccessful){
-                Handler(Looper.getMainLooper()).postDelayed({
-                    val snackbar = Snackbar.make(view, "Cadastro efetuado com sucesso!",Snackbar.LENGTH_SHORT)
-                    snackbar.setBackgroundTint(Color.BLUE)
-                    snackbar.show()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        navegarTelaLogin()
-                    },2000)
-                },1000)
+                val user = auth.currentUser
+                user?.sendEmailVerification()
+                    ?.addOnCompleteListener { emailVerification ->
+                        if (emailVerification.isSuccessful) {
+                            // E-mail de verificação enviado com sucesso
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                val snackbar = Snackbar.make(view, "Cadastro efetuado com sucesso!Verifique seu e-mail",Snackbar.LENGTH_SHORT)
+                                snackbar.setBackgroundTint(Color.BLUE)
+                                snackbar.show()
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    navegarTelaLogin()
+                                },4000)
+                            },2000)
+                        } else {
+                            // Falha ao enviar o e-mail de verificação
+                            val snackbar = Snackbar.make(view, "Erro ao enviar e-mail de verificação.", Snackbar.LENGTH_SHORT)
+                            snackbar.setBackgroundTint(Color.RED)
+                            snackbar.show()
+                            progressBar.visibility = View.INVISIBLE
+                            binding.btCadastrar.isEnabled = true
+                            binding.txtTelaLogin.isEnabled = true
+                            binding.btCadastrar.setTextColor(Color.parseColor("#FF000000"))
+                        }
+                    }
+
+
 
             }
         }.addOnFailureListener {exception ->
@@ -85,6 +104,7 @@ class FormCadastro : AppCompatActivity() {
             snackbar.show()
             progressBar.visibility = View.INVISIBLE
             binding.btCadastrar.isEnabled = true
+            binding.txtTelaLogin.isEnabled = true
             binding.btCadastrar.setTextColor(Color.parseColor("#FF000000"))
         }
     }
