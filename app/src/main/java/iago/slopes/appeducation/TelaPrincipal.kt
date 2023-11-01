@@ -1,5 +1,6 @@
 package iago.slopes.appeducation
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +9,10 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import iago.slopes.appeducation.databinding.ActivityTelaPrincipalBinding
 
 class TelaPrincipal : AppCompatActivity() {
-
     private lateinit var binding: ActivityTelaPrincipalBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +30,26 @@ class TelaPrincipal : AppCompatActivity() {
         binding.btPragas.setOnClickListener { view ->
             navegarPragas(view)
         }
+        binding.btSignOut.setOnClickListener {
+            signOut()
+        }
 
     }
+    private fun signOut() {
+        val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isLoggedIn", false)
+        editor.apply()
 
+        FirebaseAuth.getInstance().signOut()
+
+        navegarTelaLogin()
+    }
+    private fun navegarTelaLogin() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     private fun navegarPragas(view: View) {
         binding.btPlantas.isEnabled = false
         binding.btTerrenos.isEnabled = false
@@ -49,7 +67,6 @@ class TelaPrincipal : AppCompatActivity() {
             }, 2000)
         }, 1000)
     }
-
     private fun navegarTerrenos(view: View) {
         binding.btPlantas.isEnabled = false
         binding.btTerrenos.isEnabled = false
@@ -67,7 +84,6 @@ class TelaPrincipal : AppCompatActivity() {
             }, 2000)
         }, 1000)
     }
-
     private fun navegarPlantas(view: View) {
         binding.btPlantas.isEnabled = false
         binding.btTerrenos.isEnabled = false

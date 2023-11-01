@@ -6,5 +6,5 @@ import retrofit2.http.*
 
 interface ServicoTerreno {
     @GET("terrenos")
-    fun getAllContatos(): Call<List<Terreno>>
+    fun getAllTerrenos(): Call<List<Terreno>>
 }

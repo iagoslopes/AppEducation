@@ -10,6 +10,7 @@
     <string name="txt_button_plantas">Plantas</string>
     <string name="txt_button_terrenos">Terrenos</string>
     <string name="txt_button_pragas">Pragas</string>
+    <string name="txt_button_signout">SignOut</string>
     <string name="txt_forgot_password">Esqueceu sua senha?</string>
     <string name="txt_tela_cadastro">Não tem conta? Clique Aqui!</string>
     <string name="txt_tela_forgot">Cancelar</string>

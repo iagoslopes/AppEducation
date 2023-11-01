@@ -1,5 +1,6 @@
 package iago.slopes.appeducation
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -18,16 +19,16 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import iago.slopes.appeducation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private val auth = FirebaseAuth.getInstance()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         window.statusBarColor = Color.parseColor("#FFFFFF")
+
+        checkUserLoginStatus()
 
         binding.txtTelaCadastro.setOnClickListener {
             navegarTelaCadastro()
@@ -53,13 +54,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    private fun checkUserLoginStatus() {
+        val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
+        if (isLoggedIn) {
+            navegarTelaPrincipal()
+        }
+    }
     private fun mandarEmailPass() {
         val intent = Intent(this, ForgotPasswordActivity::class.java)
         startActivity(intent)
         finish()
     }
-
     private fun login(view: View){
         val email = binding.editEmail.text.toString()
         val senha = binding.editSenha.text.toString()
@@ -77,6 +84,10 @@ class MainActivity : AppCompatActivity() {
                 val user = auth.currentUser
                 if (user != null && user.isEmailVerified) {
                     // E-mail verificado, permita o login
+                    val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
                     Handler(Looper.getMainLooper()).postDelayed({
                         val snackbar = Snackbar.make(view, "Login efetuado com sucesso!", Snackbar.LENGTH_SHORT)
                         snackbar.setBackgroundTint(Color.BLUE)
@@ -115,17 +126,14 @@ class MainActivity : AppCompatActivity() {
             binding.btEntrar.setTextColor(Color.parseColor("#FF000000"))
         }
     }
-
     private  fun navegarTelaPrincipal(){
         val intent = Intent(this, TelaPrincipal::class.java)
         startActivity(intent)
         finish()
     }
-
     private fun navegarTelaCadastro(){
         val intent = Intent(this, FormCadastro::class.java)
         startActivity(intent)
         finish()
     }
-
 }

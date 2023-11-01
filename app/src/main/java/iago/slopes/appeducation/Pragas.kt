@@ -46,7 +46,7 @@ class Pragas : AppCompatActivity() {
             }
         })
         var retrofitCli: RetrofitClient = RetrofitClient()
-        retrofitCli.pragaService.getAllContatos().enqueue(
+        retrofitCli.pragaService.getAllPragas().enqueue(
             object: Callback<List<Praga>> {
                 override fun onResponse(
                     call: Call<List<Praga>>,
@@ -55,11 +55,20 @@ class Pragas : AppCompatActivity() {
                     if (response.body()!=null){
                         var adapter: AdapterPragas =
                             AdapterPragas(this@Pragas,response.body()!!)
+
+                        adapter.setOnItemClickListener(object : AdapterPragas.OnItemClickListener {
+                            override fun onItemClick(praga: Praga) {
+                                val intent = Intent(this@Pragas, DetalhesPragaActivity::class.java)
+                                intent.putExtra("praga", praga)
+                                startActivity(intent)
+                            }
+                        })
+
                         recyclerPragas.adapter = adapter
                     }
                 }
                 override fun onFailure(call: Call<List<Praga>>, t: Throwable) {
-                    Log.e("API","onFailure: Falha ao carregar plantas", t)
+                    Log.e("API","onFailure: Falha ao carregar pragas", t)
                 }
             }
         )

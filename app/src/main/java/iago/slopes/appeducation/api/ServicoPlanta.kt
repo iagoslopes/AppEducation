@@ -5,6 +5,8 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ServicoPlanta {
+    @GET("plantas/{id}")
+    fun getPlanta(@Path("id") id: Int): Call<Planta>
     @GET("plantas")
-    fun getAllContatos(): Call<List<Planta>>
+    fun getAllPlantas(): Call<List<Planta>>
 }

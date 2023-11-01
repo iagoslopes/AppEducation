@@ -15,6 +15,15 @@
         android:theme="@style/Theme.AppEducation"
         tools:targetApi="31">
         <activity
+            android:name=".DetalhesTerrenoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalhesPragaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalhesPlantaActivity"
+            android:exported="false" />
+        <activity
             android:name=".Pragas"
             android:exported="false" />
         <activity

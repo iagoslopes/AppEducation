@@ -8,20 +8,25 @@
 
     <ImageView
         android:id="@+id/imgTerreno"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/txtNomeCientifico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/txtNomeTerreno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="center" />
 
-    <TextView
-        android:id="@+id/txtNomeCientifico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp" />
 </LinearLayout>

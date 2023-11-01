@@ -6,5 +6,5 @@ import retrofit2.http.*
 
 interface ServicoPraga {
     @GET("pragas")
-    fun getAllContatos(): Call<List<Praga>>
+    fun getAllPragas(): Call<List<Praga>>
 }

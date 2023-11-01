@@ -46,7 +46,7 @@ class Terrenos : AppCompatActivity() {
             }
         })
         var retrofitCli: RetrofitClient = RetrofitClient()
-        retrofitCli.terrenoService.getAllContatos().enqueue(
+        retrofitCli.terrenoService.getAllTerrenos().enqueue(
             object: Callback<List<Terreno>> {
                 override fun onResponse(
                     call: Call<List<Terreno>>,
@@ -55,6 +55,15 @@ class Terrenos : AppCompatActivity() {
                     if (response.body()!=null){
                         var adapter: AdapterTerrenos =
                             AdapterTerrenos(this@Terrenos,response.body()!!)
+
+                        adapter.setOnItemClickListener(object : AdapterTerrenos.OnItemClickListener {
+                            override fun onItemClick(terreno: Terreno) {
+                                val intent = Intent(this@Terrenos, DetalhesTerrenoActivity::class.java)
+                                intent.putExtra("terreno", terreno)
+                                startActivity(intent)
+                            }
+                        })
+
                         recyclerTerrenos.adapter = adapter
                     }
                 }

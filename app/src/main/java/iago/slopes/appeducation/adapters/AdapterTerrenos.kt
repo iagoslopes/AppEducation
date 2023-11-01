@@ -2,7 +2,6 @@ package iago.slopes.appeducation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
@@ -10,6 +9,7 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import iago.slopes.appeducation.R
 import iago.slopes.appeducation.models.Terreno
 class AdapterTerrenos(var context: Context, var listaTerrenos: List<Terreno>): RecyclerView.Adapter<AdapterTerrenos.viewholder>(),
@@ -18,6 +18,15 @@ class AdapterTerrenos(var context: Context, var listaTerrenos: List<Terreno>): R
     private var listaTerrenosFiltradas: List<Terreno> = listaTerrenos
     class viewholder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
+    }
+    interface OnItemClickListener {
+        fun onItemClick(terreno: Terreno)
+    }
+
+    private var itemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
         var inflater:LayoutInflater = LayoutInflater.from(context)
@@ -31,8 +40,18 @@ class AdapterTerrenos(var context: Context, var listaTerrenos: List<Terreno>): R
         val txtNome:TextView = holder.itemView.findViewById(R.id.txtNomeTerreno)
         val imgTerreno: ImageView = holder.itemView.findViewById(R.id.imgTerreno)
         val txtNomeCientifico:TextView = holder.itemView.findViewById(R.id.txtNomeCientifico)
+
+        val url = terreno.foto
+        Glide.with(context)
+            .load(url)
+            .into(imgTerreno)
+
         txtNome.text = terreno.nome
         txtNomeCientifico.text = terreno.nome_cientifico
+
+        holder.itemView.setOnClickListener {
+            itemClickListener?.onItemClick(terreno)
+        }
     }
 
     override fun getItemCount(): Int {

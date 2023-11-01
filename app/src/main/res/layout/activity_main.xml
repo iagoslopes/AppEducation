@@ -45,6 +45,7 @@
         app:boxStrokeColor="@color/dark_cyan_green"
         app:hintAnimationEnabled="true"
         app:hintTextColor="@color/black"
+        android:textColorHint="@color/black"
         app:errorTextColor="@color/red"
         app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
@@ -57,6 +58,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:padding="15dp"
             android:background="@drawable/background_edittext"
             android:drawableEnd="@drawable/ic_email" />
@@ -75,9 +77,11 @@
         app:boxStrokeColor="@color/dark_cyan_green"
         app:hintAnimationEnabled="true"
         app:hintTextColor="@color/black"
+        android:textColorHint="@color/black"
         app:errorTextColor="@color/red"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/black"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -88,6 +92,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:background="@drawable/background_edittext"
             android:padding="15dp" />
 
@@ -115,6 +120,7 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_button_entrar"
         android:textSize="20sp"
+        android:textColor="@color/black"
         android:textAllCaps="false"
         android:padding="15dp"
         android:background="@drawable/background_button_selector"
@@ -122,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@id/txtForgotPass"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp" />
 
@@ -139,8 +145,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginStart="20dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -150,18 +155,17 @@
         app:layout_constraintTop_toBottomOf="@id/txtTelaCadastro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="20dp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:background="@drawable/background_view_bottom"
         app:layout_constraintTop_toBottomOf="@id/progressBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="25dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

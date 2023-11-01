@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClient {
-    private val BASE_URL = "https://web-mb3ecmxyl0qj.up-de-fra1-1.apps.run-on-seenode.com/"  // Substitua pela URL base
+    private val BASE_URL = "https://education-agro.onrender.com/"  // Substitua pela URL base
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

@@ -46,7 +46,7 @@ class Plantas : AppCompatActivity() {
             }
         })
         var retrofitCli:RetrofitClient = RetrofitClient()
-        retrofitCli.plantaService.getAllContatos().enqueue(
+        retrofitCli.plantaService.getAllPlantas().enqueue(
             object:Callback<List<Planta>>{
                 override fun onResponse(
                     call: Call<List<Planta>>,
@@ -55,6 +55,15 @@ class Plantas : AppCompatActivity() {
                     if (response.body()!=null){
                         var adapter:AdapterPlantas=
                             AdapterPlantas(this@Plantas,response.body()!!)
+
+                        adapter.setOnItemClickListener(object : AdapterPlantas.OnItemClickListener {
+                            override fun onItemClick(planta: Planta) {
+                                val intent = Intent(this@Plantas, DetalhesPlantaActivity::class.java)
+                                intent.putExtra("planta", planta)
+                                startActivity(intent)
+                            }
+                        })
+
                         recyclerPlantas.adapter = adapter
                     }
                 }
