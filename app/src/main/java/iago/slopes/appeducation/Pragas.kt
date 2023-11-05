@@ -1,6 +1,7 @@
 package iago.slopes.appeducation
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import iago.slopes.appeducation.adapters.AdapterPragas
 import iago.slopes.appeducation.api.RetrofitClient
 import iago.slopes.appeducation.models.Praga
@@ -45,13 +47,18 @@ class Pragas : AppCompatActivity() {
                 return true
             }
         })
+
         var retrofitCli: RetrofitClient = RetrofitClient()
+
+        mostrarMensagemCarregando()
+
         retrofitCli.pragaService.getAllPragas().enqueue(
             object: Callback<List<Praga>> {
                 override fun onResponse(
                     call: Call<List<Praga>>,
                     response: Response<List<Praga>>
                 ) {
+                    esconderMensagemCarregando()
                     if (response.body()!=null){
                         var adapter: AdapterPragas =
                             AdapterPragas(this@Pragas,response.body()!!)
@@ -68,6 +75,7 @@ class Pragas : AppCompatActivity() {
                     }
                 }
                 override fun onFailure(call: Call<List<Praga>>, t: Throwable) {
+                    esconderMensagemCarregando()
                     Log.e("API","onFailure: Falha ao carregar pragas", t)
                 }
             }
@@ -77,5 +85,15 @@ class Pragas : AppCompatActivity() {
         val intent = Intent(this, TelaPrincipal::class.java)
         startActivity(intent)
         finish()
+    }
+    private var loadingSnackbar: Snackbar? = null
+    private fun mostrarMensagemCarregando() {
+        loadingSnackbar = Snackbar.make(recyclerPragas, "Carregando Pragas...", Snackbar.LENGTH_INDEFINITE)
+        loadingSnackbar!!.setBackgroundTint(Color.GREEN)
+        loadingSnackbar!!.show()
+    }
+    private fun esconderMensagemCarregando() {
+        // Fecha a mensagem de carregamento se estiver aberta
+        loadingSnackbar?.dismiss()
     }
 }

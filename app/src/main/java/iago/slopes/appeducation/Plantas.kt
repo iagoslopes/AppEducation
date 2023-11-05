@@ -1,6 +1,7 @@
 package iago.slopes.appeducation
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import iago.slopes.appeducation.adapters.AdapterPlantas
 import iago.slopes.appeducation.api.RetrofitClient
 import iago.slopes.appeducation.models.Planta
@@ -45,13 +47,19 @@ class Plantas : AppCompatActivity() {
                 return true
             }
         })
+
         var retrofitCli:RetrofitClient = RetrofitClient()
+
+        mostrarMensagemCarregando()
+
         retrofitCli.plantaService.getAllPlantas().enqueue(
             object:Callback<List<Planta>>{
                 override fun onResponse(
                     call: Call<List<Planta>>,
                     response: Response<List<Planta>>
+
                 ) {
+                    esconderMensagemCarregando()
                     if (response.body()!=null){
                         var adapter:AdapterPlantas=
                             AdapterPlantas(this@Plantas,response.body()!!)
@@ -68,6 +76,7 @@ class Plantas : AppCompatActivity() {
                     }
                 }
                 override fun onFailure(call: Call<List<Planta>>, t: Throwable) {
+                    esconderMensagemCarregando()
                     Log.e("API","onFailure: Falha ao carregar plantas", t)
                 }
             }
@@ -77,5 +86,15 @@ class Plantas : AppCompatActivity() {
         val intent = Intent(this, TelaPrincipal::class.java)
         startActivity(intent)
         finish()
+    }
+    private var loadingSnackbar: Snackbar? = null
+    private fun mostrarMensagemCarregando() {
+        loadingSnackbar = Snackbar.make(recyclerPlantas, "Carregando Plantas...", Snackbar.LENGTH_INDEFINITE)
+        loadingSnackbar!!.setBackgroundTint(Color.GREEN)
+        loadingSnackbar!!.show()
+    }
+    private fun esconderMensagemCarregando() {
+        // Fecha a mensagem de carregamento se estiver aberta
+        loadingSnackbar?.dismiss()
     }
 }
