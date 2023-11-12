@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppEducation</string>
+    <string name="app_name">EduAgro</string>
 
     <string name="hint_nome">Nome Completo</string>
     <string name="hint_email">E-mail</string>
