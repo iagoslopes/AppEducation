@@ -24,7 +24,11 @@ class Terrenos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_terrenos)
+
+        window.statusBarColor = Color.parseColor("#00A86B")
+
         recyclerTerrenos = findViewById(R.id.recyclerTerrenos)
+
         btnMenu = findViewById(R.id.fabVoltarMenu)
 
         recyclerTerrenos.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

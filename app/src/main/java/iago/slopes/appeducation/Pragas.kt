@@ -24,7 +24,11 @@ class Pragas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pragas)
+
+        window.statusBarColor = Color.parseColor("#00A86B")
+
         recyclerPragas = findViewById(R.id.recyclerPragas)
+
         btnMenu = findViewById(R.id.fabVoltarMenu)
 
         recyclerPragas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

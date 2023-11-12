@@ -1,6 +1,7 @@
 package iago.slopes.appeducation
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -13,6 +14,8 @@ class DetalhesPragaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_praga)
+
+        window.statusBarColor = Color.parseColor("#00A86B")
 
         val fabVoltarLista = findViewById<FloatingActionButton>(R.id.fabVoltarLista)
 
@@ -35,9 +38,9 @@ class DetalhesPragaActivity : AppCompatActivity() {
                 .into(imgPraga)
 
             txtNomePraga.text = praga.nome
-            txtNomeCientifico.text = "Nome Científico: ${praga.nome_cientifico}"
-            txtDescricao.text = "Descrição: ${praga.descricao}"
-            txtCombate.text = "Caracteristica: ${praga.combate}"
+            txtNomeCientifico.text = "${praga.nome_cientifico}"
+            txtDescricao.text = "${praga.descricao}"
+            txtCombate.text = "${praga.combate}"
         }
     }
     private fun voltarLista() {

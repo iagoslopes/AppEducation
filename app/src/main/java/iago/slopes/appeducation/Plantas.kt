@@ -24,7 +24,11 @@ class Plantas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plantas)
+
+        window.statusBarColor = Color.parseColor("#00A86B")
+
         recyclerPlantas = findViewById(R.id.recyclerPlantas)
+
         btnMenu = findViewById(R.id.fabVoltarMenu)
 
         recyclerPlantas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

@@ -22,16 +22,28 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                />
 
             <TextView
                 android:id="@+id/txtNomePlantaDetalhes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:padding="8dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:id="@+id/txtNomeCientifico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Nome Científico:"/>
 
             <TextView
                 android:id="@+id/txtNomeCientificoDetalhes"
@@ -41,11 +53,31 @@
                 android:padding="8dp" />
 
             <TextView
+                android:id="@+id/txtTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Tipo:"/>
+
+            <TextView
                 android:id="@+id/txtTipoDetalhes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/txtTerreno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Terreno:"/>
 
             <TextView
                 android:id="@+id/txtTerrenoDetalhes"
@@ -55,6 +87,16 @@
                 android:padding="8dp" />
 
             <TextView
+                android:id="@+id/txtPraga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Praga:"/>
+
+            <TextView
                 android:id="@+id/txtPragaDetalhes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,11 +104,31 @@
                 android:padding="8dp" />
 
             <TextView
+                android:id="@+id/txtCultivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Cultivo:"/>
+
+            <TextView
                 android:id="@+id/txtCultivoDetalhes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/txtDescricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Descrição:"/>
 
             <TextView
                 android:id="@+id/txtDescricaoDetalhes"
@@ -83,9 +145,14 @@
         android:id="@+id/fabVoltarLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="left|start"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/voltar_24"
-        app:elevation="6dp" />
+        android:src="@drawable/voltar_24"
+        app:backgroundTint="@color/teal_200"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:rippleColor="@color/white"
+        app:borderWidth="0dp"
+        app:useCompatPadding="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

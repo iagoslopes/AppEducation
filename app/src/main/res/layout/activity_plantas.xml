@@ -28,7 +28,7 @@
         android:id="@+id/fabVoltarMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|start"
         android:layout_margin="16dp"
         android:src="@drawable/voltar_24"
         app:backgroundTint="@color/teal_200"

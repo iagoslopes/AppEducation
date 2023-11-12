@@ -28,10 +28,21 @@
                 android:id="@+id/txtNomeTerrenoDetalhes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:padding="8dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp" />
+
+            <TextView
+                android:id="@+id/txtNomeCientifico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Nome Científico:"/>
 
             <TextView
                 android:id="@+id/txtNomeCientificoDetalhes"
@@ -41,11 +52,31 @@
                 android:padding="8dp" />
 
             <TextView
+                android:id="@+id/txtCaracteristica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Característica:"/>
+
+            <TextView
                 android:id="@+id/txtCaracteristicaDetalhes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/txtDescricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="1dp"
+                android:text="Descrição:"/>
 
             <TextView
                 android:id="@+id/txtDescricaoDetalhes"
@@ -62,9 +93,14 @@
         android:id="@+id/fabVoltarLista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="left|start"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/voltar_24"
-        app:elevation="6dp" />
+        android:src="@drawable/voltar_24"
+        app:backgroundTint="@color/teal_200"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:rippleColor="@color/white"
+        app:borderWidth="0dp"
+        app:useCompatPadding="true" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

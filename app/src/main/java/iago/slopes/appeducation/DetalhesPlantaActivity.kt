@@ -1,6 +1,7 @@
 package iago.slopes.appeducation
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -13,6 +14,8 @@ class DetalhesPlantaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhes_planta)
+
+        window.statusBarColor = Color.parseColor("#00A86B")
 
         val fabVoltarLista = findViewById<FloatingActionButton>(R.id.fabVoltarLista)
 
@@ -38,12 +41,12 @@ class DetalhesPlantaActivity : AppCompatActivity() {
                 .into(imgPlanta)
 
             txtNomePlanta.text = planta.nome
-            txtNomeCientifico.text = "Nome Científico: ${planta.nome_cientifico}"
-            txtDescricao.text = "Descrição: ${planta.descricao}"
-            txtTipo.text = "Tipo: ${planta.tipo}"
-            txtTerreno.text = "Terreno: ${planta.terreno}"
-            txtPraga.text = "Praga: ${planta.praga}"
-            txtCultivo.text = "Cultivo: ${planta.cultivo}"
+            txtNomeCientifico.text = "${planta.nome_cientifico}"
+            txtDescricao.text = "${planta.descricao}"
+            txtTipo.text = "${planta.tipo}"
+            txtTerreno.text = "${planta.terreno}"
+            txtPraga.text = "${planta.praga}"
+            txtCultivo.text = "${planta.cultivo}"
         }
     }
     private fun voltarLista() {
