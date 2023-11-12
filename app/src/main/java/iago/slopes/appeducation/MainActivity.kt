@@ -11,11 +11,8 @@ import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthEmailException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import iago.slopes.appeducation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -87,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                     val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
                     val editor = sharedPreferences.edit()
                     editor.putBoolean("isLoggedIn", true)
+                    editor.putString("userEmail", user.email)
                     editor.apply()
                     Handler(Looper.getMainLooper()).postDelayed({
                         val snackbar = Snackbar.make(view, "Login efetuado com sucesso!", Snackbar.LENGTH_SHORT)

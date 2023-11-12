@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PerfilActivity">
+
+    <!-- Seu layout original aqui -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/img_logo"/>
+
+            <TextView
+                android:id="@+id/txtRegistro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/imgLogo"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:text="Informações do usuário"
+                android:layout_marginBottom="30dp"/>
+
+            <TextView
+                android:id="@+id/txtNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtRegistro"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Nome"/>
+
+            <EditText
+                android:id="@+id/editNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtNome"
+                android:hint="Digite seu nome"/>
+
+            <TextView
+                android:id="@+id/txtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editNome"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Email"/>
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtEmail"
+                android:inputType="none"
+                android:enabled="false"/>
+
+            <TextView
+                android:id="@+id/txtDataNascimento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/editEmail"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Data de Nascimento"/>
+
+            <EditText
+                android:id="@+id/editDataNascimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDataNascimento"
+                android:hint="Selecione a data de nascimento"/>
+
+            <ImageButton
+                android:id="@+id/btnDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtDataNascimento"
+                android:layout_toEndOf="@id/editDataNascimento"
+                android:layout_toRightOf="@id/editDataNascimento"
+                android:src="@drawable/ic_calendar"
+                android:onClick="showDatePickerDialog"/>
+
+            <TextView
+                android:id="@+id/txtSexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnDatePicker"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Sexo"/>
+
+            <!-- Spinner para seleção de sexo -->
+            <Spinner
+                android:id="@+id/spinnerSexo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtSexo"
+                android:entries="@array/sexo_options"/>
+
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinnerSexo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="SALVAR"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/dark_cyan_green"/>
+
+            <Button
+                android:id="@+id/btnVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btnSalvar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="VOLTAR"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/dark_cyan_green"/>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

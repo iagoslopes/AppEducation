@@ -88,7 +88,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btSignOut"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/txt_button_signout"
         android:textSize="20sp"
@@ -99,8 +99,23 @@
         android:enabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="250dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginEnd="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btPerfil"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Perfil"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:padding="15dp"
+        android:background="@drawable/background_button_selector"
+        android:enabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="40dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

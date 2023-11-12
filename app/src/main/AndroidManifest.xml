@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppEducation"
         tools:targetApi="31">
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalhesTerrenoActivity"
             android:exported="false" />
         <activity

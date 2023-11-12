@@ -16,4 +16,9 @@
     <string name="txt_tela_forgot">Cancelar</string>
     <string name="txt_tela_login">Já tem uma conta? Clique Aqui!</string>
 
+    <string-array name="sexo_options">
+        <item>Feminino</item>
+        <item>Masculino</item>
+    </string-array>
+
 </resources>

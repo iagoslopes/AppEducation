@@ -33,12 +33,17 @@ class TelaPrincipal : AppCompatActivity() {
         binding.btSignOut.setOnClickListener {
             signOut()
         }
+        binding.btPerfil.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     private fun signOut() {
         val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putBoolean("isLoggedIn", false)
+        editor.putString("userEmail", "")
         editor.apply()
 
         FirebaseAuth.getInstance().signOut()
