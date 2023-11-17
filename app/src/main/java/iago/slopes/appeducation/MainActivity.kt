@@ -88,7 +88,8 @@ class MainActivity : AppCompatActivity() {
                     editor.apply()
                     Handler(Looper.getMainLooper()).postDelayed({
                         val snackbar = Snackbar.make(view, "Login efetuado com sucesso!", Snackbar.LENGTH_SHORT)
-                        snackbar.setBackgroundTint(Color.BLUE)
+                        snackbar.setBackgroundTint(Color.GRAY)
+                        snackbar.setTextColor(Color.WHITE)
                         snackbar.show()
                         Handler(Looper.getMainLooper()).postDelayed({
                             navegarTelaPrincipal()

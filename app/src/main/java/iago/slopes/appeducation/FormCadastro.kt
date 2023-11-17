@@ -68,13 +68,14 @@ class FormCadastro : AppCompatActivity() {
                         if (emailVerification.isSuccessful) {
                             // E-mail de verificação enviado com sucesso
                             Handler(Looper.getMainLooper()).postDelayed({
-                                val snackbar = Snackbar.make(view, "Cadastro efetuado com sucesso!Verifique seu e-mail",Snackbar.LENGTH_SHORT)
-                                snackbar.setBackgroundTint(Color.BLUE)
+                                val snackbar = Snackbar.make(view, "Cadastrado. Verifique seu e-mail, na sua caixa de spam ou lixo eletrônico",Snackbar.LENGTH_INDEFINITE)
+                                snackbar.setBackgroundTint(Color.GRAY)
+                                snackbar.setTextColor(Color.WHITE)
                                 snackbar.show()
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     navegarTelaLogin()
-                                },4000)
-                            },2000)
+                                },7000)
+                            },500)
                         } else {
                             // Falha ao enviar o e-mail de verificação
                             val snackbar = Snackbar.make(view, "Erro ao enviar e-mail de verificação.", Snackbar.LENGTH_SHORT)
